@@ -1,0 +1,60 @@
+<div class="dashboard">
+  <div class="dashboard-searchbox">
+    <form
+      class="dashboard__form"
+      [formGroup]="searchForm"
+      (ngSubmit)="onSubmit()"
+      class="search-box"
+    >
+      <div class="search__group">
+        <h2 class="search__title">Search for heroes</h2>
+        <input
+          [class.search__input--error]="
+            name.invalid && (name.dirty || name.touched)
+          "
+          id="searchInput"
+          type="text"
+          class="search__input"
+          formControlName="name"
+        />
+
+        <button
+          [disabled]="!searchForm.valid"
+          type="submit"
+          class="search-box__btn"
+        >
+          Search
+        </button>
+      </div>
+      <span
+        *ngIf="
+          !searchForm.valid && name.invalid && (name.dirty || name.touched)
+        "
+        class="help-block"
+        >¡Por favor, introduzca un nombre válido!</span
+      >
+      <span
+        *ngIf="
+          searchForm.controls['name'].errors?.nameNotFound &&
+          (name.dirty || name.touched)
+        "
+        class="help-block"
+        >¡No hay heroe con este nombre!</span
+      >
+    </form>
+  </div>
+
+  <div class="dashboard-heroes">
+    <a
+      [routerLink]="['/results', hero.name]"
+      class="dashboard__card"
+      *ngFor="let hero of heroes"
+    >
+      <div class="user">
+        <img class="user__photo" [src]="hero.img" alt="{{ hero.name }}" />
+        <h4 class="user__title">{{ hero.name }}</h4>
+        <p class="user__description">{{ hero.bio }}</p>
+      </div>
+    </a>
+  </div>
+</div>

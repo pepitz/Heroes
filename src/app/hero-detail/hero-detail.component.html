@@ -1,0 +1,17 @@
+<div *ngIf="hero" class="detail-view">
+  <div class="detail-view__img">
+    <img [src]="hero.img" alt="Image of {{ hero.name }}" />
+  </div>
+  <div class="detail-view__name">
+    <span class="hero__label">Name:</span>
+    <p>{{ hero.name }}</p>
+  </div>
+  <div class="detail-view__home">
+    <span class="hero__label">Publishing house:</span>
+    <p>{{ hero.casa }}</p>
+  </div>
+  <div class="detail-view__bio">
+    <span class="hero__label">Bio:</span>
+    <p>{{ hero.bio }}</p>
+  </div>
+</div>
